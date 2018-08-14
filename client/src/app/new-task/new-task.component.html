@@ -1,10 +1,4 @@
-<div *ngFor="let task of tasks">
-    <h1>{{ task.title }}</h1>
-    <h1>{{ task.description }}</h1>
-    <h1>{{ task.completed }}</h1>
-
-    <hr>
-</div>
+<app-task *ngFor="let task of tasks" [currentTask]="task" ></app-task>
 
 <form (submit)="create()">
     <input placeholder="Title" [(ngModel)]="task.title" name="task.title" />

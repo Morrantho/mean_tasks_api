@@ -6,6 +6,7 @@ import { TaskService } from '../task.service';
     templateUrl: './new-task.component.html',
     styleUrls: ['./new-task.component.css']
 })
+
 export class NewTaskComponent implements OnInit {
     private task:any;
     private tasks:any;
