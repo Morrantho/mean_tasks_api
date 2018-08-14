@@ -1,5 +1,3 @@
-<app-task *ngFor="let task of tasks" [currentTask]="task" ></app-task>
-
 <form (submit)="create()">
     <input placeholder="Title" [(ngModel)]="task.title" name="task.title" />
     <input placeholder="Description" [(ngModel)]="task.description" name="task.description" />

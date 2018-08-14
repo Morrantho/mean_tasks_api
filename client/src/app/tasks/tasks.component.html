@@ -1,3 +1,7 @@
-<p>
-  tasks works!
-</p>
+<NewTaskComponent (taskEmitter)="addTask($event)" ></NewTaskComponent>
+
+<hr>
+
+<div class="tasks">
+	<TaskComponent *ngFor="let task of tasks" [currentTask]="task" ></TaskComponent>
+</div>

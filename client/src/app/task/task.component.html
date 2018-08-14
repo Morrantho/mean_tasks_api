@@ -1,6 +1,7 @@
 <div class="TaskComponent">
-    <h1>{{ currentTask.title }}</h1>
-    <h1>{{ currentTask.description }}</h1>
-    <h1>{{ currentTask.completed }}</h1>
-    <hr>
+    <h4 class="centerText">{{ currentTask.title }}</h4>
+    <p *ngIf="currentTask.completed" class="green centerText">Complete</p>
+    <p *ngIf="!currentTask.completed" class="red centerText">Incomplete</p>
+
+    <p>{{ currentTask.description }}</p>
 </div>

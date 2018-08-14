@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { TaskService } from '../task.service';
+import { EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'NewTaskComponent',
@@ -9,9 +10,13 @@ import { TaskService } from '../task.service';
 
 export class NewTaskComponent implements OnInit {
     private task:any;
-    private tasks:any;
+    @Output() taskEmitter = new EventEmitter();
 
     constructor(private ts:TaskService){
+        this.init();
+    }
+
+    init(){
         this.task = {
             title:"",
             description:"",
@@ -20,12 +25,13 @@ export class NewTaskComponent implements OnInit {
     }
 
     ngOnInit(){
-        this.ts.all(data=>this.tasks=data);
+        
     }
 
     create(){
         this.ts.create(this.task,(data)=>{
-            this.tasks.push(data);
+            this.taskEmitter.emit(data);
+            this.init();
         });
     }
 }

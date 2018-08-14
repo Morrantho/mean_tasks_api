@@ -1,0 +1,20 @@
+.TaskComponent{
+	margin: 16px;
+	padding: 16px;
+	width: 256px;
+	height: 256px;
+	background-color: rgb(250,250,250);
+	border: 1px solid black;
+}
+
+.centerText{
+	text-align: center;
+}
+
+.red{
+	color: crimson;
+}
+
+.green{
+	color: lightgreen;
+}

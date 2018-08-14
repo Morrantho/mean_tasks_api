@@ -1,15 +1,22 @@
 import { Component, OnInit } from '@angular/core';
+import { TaskService } from '../task.service';
 
 @Component({
-  selector: 'app-tasks',
-  templateUrl: './tasks.component.html',
-  styleUrls: ['./tasks.component.css']
+    selector: 'TasksComponent',
+    templateUrl: './tasks.component.html',
+    styleUrls: ['./tasks.component.css']
 })
+
 export class TasksComponent implements OnInit {
+    private tasks:any;
 
-  constructor() { }
+    constructor(private ts:TaskService){}
 
-  ngOnInit() {
-  }
+    ngOnInit(){
+        this.ts.all(data=>this.tasks=data);
+    }
 
+    addTask(task){
+        this.tasks.push(task);
+    }
 }
