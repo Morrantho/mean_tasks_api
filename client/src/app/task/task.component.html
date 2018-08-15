@@ -1,7 +1,11 @@
-<div class="TaskComponent">
+<div *ngIf="currentTask" class="TaskComponent">
+    <p>{{currentTask._id}}</p>
     <h4 class="centerText">{{ currentTask.title }}</h4>
     <p *ngIf="currentTask.completed" class="green centerText">Complete</p>
     <p *ngIf="!currentTask.completed" class="red centerText">Incomplete</p>
 
     <p>{{ currentTask.description }}</p>
+
+    <button [routerLink]="[ 'tasks', currentTask._id ]" >View</button>
+    <button (click)="destroy(currentTask._id)" >Delete</button>
 </div>

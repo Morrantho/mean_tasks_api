@@ -19,4 +19,14 @@ export class TasksComponent implements OnInit {
     addTask(task){
         this.tasks.push(task);
     }
+
+    deleteTask(task){
+        for(let i=0; i < this.tasks.length; i++){
+            if( this.tasks[i]._id == task._id ){
+                this.tasks[i] = this.tasks[this.tasks.length-1];
+                this.tasks.pop();
+                
+            }
+        }
+    }
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { TaskService } from '../task.service';
 
 @Component({
 	selector: 'TaskComponent',
@@ -8,9 +9,18 @@ import { Component, OnInit, Input } from '@angular/core';
 
 export class TaskComponent implements OnInit {
 	@Input() currentTask:any;
+	@Output() deleteTaskEmitter = new EventEmitter(); 
 
-	constructor(){}
+	constructor(private ts:TaskService){
+
+	}
 
 	ngOnInit(){}
 	
+
+	destroy(taskId){
+		this.ts.destroy(taskId,(task)=>{
+			this.deleteTaskEmitter.emit(task);
+		});
+	}
 }

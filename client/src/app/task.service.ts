@@ -16,8 +16,8 @@ export class TaskService {
         .subscribe(data=>cb(data));
     }
 
-    findById(task,cb){
-        this.http.get("/api/tasks/"+task._id)
+    findById(id,cb){
+        this.http.get("/api/tasks/"+id)
         .subscribe(data=>cb(data));
     }
 
@@ -26,8 +26,8 @@ export class TaskService {
         .subscribe(data=>cb(data));
     }
 
-    destroy(task,cb){
-        this.http.delete("/api/tasks/"+task._id)
+    destroy(taskId,cb){
+        this.http.delete("/api/tasks/"+taskId)
         .subscribe(data=>cb(data));
     }
 }
