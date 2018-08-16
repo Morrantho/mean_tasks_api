@@ -10,6 +10,8 @@ import { EventEmitter } from '@angular/core';
 
 export class NewTaskComponent implements OnInit {
     private task:any;
+    private errors:any;
+
     @Output() taskEmitter = new EventEmitter();
 
     constructor(private ts:TaskService){
@@ -30,8 +32,16 @@ export class NewTaskComponent implements OnInit {
 
     create(){
         this.ts.create(this.task,(data)=>{
-            this.taskEmitter.emit(data);
-            this.init();
+            if(data.errors){
+                this.errors = [];
+
+                for(let error in data.errors){
+                    this.errors.push( data.errors[error].message );
+                }
+            }else{
+                this.taskEmitter.emit(data);
+                this.init();
+            }
         });
     }
 }
