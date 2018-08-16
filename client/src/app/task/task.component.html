@@ -1,11 +1,53 @@
-<div *ngIf="currentTask" class="TaskComponent">
-    <p>{{currentTask._id}}</p>
-    <h4 class="centerText">{{ currentTask.title }}</h4>
-    <p *ngIf="currentTask.completed" class="green centerText">Complete</p>
-    <p *ngIf="!currentTask.completed" class="red centerText">Incomplete</p>
+<div *ngIf="currentTask">
+    <div *ngIf="currentTask.edit" >
+        <div class="card">
+            <div *ngIf="currentTask.completed" class="card-header bg-success text-white">{{currentTask.title}}</div>
+            <div *ngIf="!currentTask.completed" class="card-header bg-danger text-white">{{currentTask.title}}</div>
 
-    <p>{{ currentTask.description }}</p>
+            <div class="card-body">{{currentTask.description}}</div>
 
-    <button [routerLink]="[ 'tasks', currentTask._id ]" >View</button>
-    <button (click)="destroy(currentTask._id)" >Delete</button>
+            <div class="card-footer">
+                <button *ngIf="currentTask.completed" (click)="edit(currentTask)" type="button" class="btn btn-success col-sm-6">Edit</button>
+                <button *ngIf="currentTask.completed" (click)="destroy(currentTask._id)" type="button" class="btn btn-success col-sm-6">Destroy</button>
+                
+                <button *ngIf="!currentTask.completed" (click)="edit(currentTask)" type="button" class="btn btn-danger col-sm-6">Edit</button>
+                <button *ngIf="!currentTask.completed" (click)="destroy(currentTask._id)" type="button" class="btn btn-danger col-sm-6">Destroy</button>                    
+            </div>            
+        </div>
+    </div>
+
+    <div *ngIf="!currentTask.edit">
+        <div class="card">
+            <div *ngIf="currentTask.completed" class="card-header bg-success text-white">{{currentTask.title}}</div>
+            <div *ngIf="!currentTask.completed" class="card-header bg-danger text-white">{{currentTask.title}}</div>
+    
+            <div class="card-body">
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <input type="title" class="form-control" placeholder="Title" [(ngModel)]="currentTask.title" name="currentTask.title">
+                    </div>
+                </div>
+            
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <textarea class="form-control" placeholder="Description" [(ngModel)]="currentTask.description" name="currentTask.description"></textarea>
+                    </div>
+                </div>
+            
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <select class="form-control" name="currentTask.completed" [(ngModel)]="currentTask.completed" >
+                            <option value=true>True</option>
+                            <option value=false>False</option>
+                        </select>            
+                    </div>
+                </div>
+            </div> 
+
+            <div class="card-footer">
+                <button (click)="update()" *ngIf="currentTask.completed"  type="submit" class="btn btn-success col-sm-12">Update</button>                    
+                <button (click)="update()" *ngIf="!currentTask.completed" type="submit" class="btn btn-danger col-sm-12">Update</button>
+            </div>            
+        </div>
+    </div>
 </div>

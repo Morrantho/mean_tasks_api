@@ -1,7 +1,5 @@
 <NewTaskComponent (taskEmitter)="addTask($event)" ></NewTaskComponent>
 
-<hr>
-
 <div class="tasks">
 	<TaskComponent (deleteTaskEmitter)="deleteTask($event)" *ngFor="let task of tasks" [currentTask]="task" ></TaskComponent>
 </div>

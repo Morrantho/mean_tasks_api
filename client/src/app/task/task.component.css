@@ -1,10 +1,7 @@
-.TaskComponent{
-	margin: 16px;
-	padding: 16px;
-	width: 256px;
-	height: 256px;
-	background-color: rgb(250,250,250);
-	border: 1px solid black;
+.card{
+	margin: 1em;
+	width: 30em;
+	height: 22em;
 }
 
 .centerText{
@@ -17,4 +14,8 @@
 
 .green{
 	color: lightgreen;
+}
+
+textarea{
+	resize: none;
 }

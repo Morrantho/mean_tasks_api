@@ -15,12 +15,26 @@ export class TaskComponent implements OnInit {
 
 	}
 
-	ngOnInit(){}
+	ngOnInit(){
+		this.edit();
+	}
 	
 
 	destroy(taskId){
 		this.ts.destroy(taskId,(task)=>{
 			this.deleteTaskEmitter.emit(task);
+		});
+	}
+
+	edit(){
+		if(!this.currentTask.edit) this.currentTask.edit = true;
+		else this.currentTask.edit = false;
+	}
+
+	update(){
+		this.ts.update(this.currentTask,(data)=>{
+			this.currentTask=data;
+			this.edit();
 		});
 	}
 }
