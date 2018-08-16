@@ -17,37 +17,39 @@
     </div>
 
     <div *ngIf="!currentTask.edit">
-        <div class="card">
-            <div *ngIf="currentTask.completed" class="card-header bg-success text-white">{{currentTask.title}}</div>
-            <div *ngIf="!currentTask.completed" class="card-header bg-danger text-white">{{currentTask.title}}</div>
-    
-            <div class="card-body">
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <input type="title" class="form-control" placeholder="Title" [(ngModel)]="currentTask.title" name="currentTask.title">
+        <form (submit)="update()" >
+            <div class="card">
+                <div *ngIf="currentTask.completed" class="card-header bg-success text-white">{{currentTask.title}}</div>
+                <div *ngIf="!currentTask.completed" class="card-header bg-danger text-white">{{currentTask.title}}</div>
+        
+                <div class="card-body">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <input type="title" required class="form-control" placeholder="Title" [(ngModel)]="currentTask.title" name="currentTask.title">
+                        </div>
                     </div>
-                </div>
-            
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <textarea class="form-control" placeholder="Description" [(ngModel)]="currentTask.description" name="currentTask.description"></textarea>
+                
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <textarea class="form-control" placeholder="Description" [(ngModel)]="currentTask.description" name="currentTask.description"></textarea>
+                        </div>
                     </div>
-                </div>
-            
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <select class="form-control" name="currentTask.completed" [(ngModel)]="currentTask.completed" >
-                            <option value=true>True</option>
-                            <option value=false>False</option>
-                        </select>            
+                
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <select class="form-control" name="currentTask.completed" [(ngModel)]="currentTask.completed" >
+                                <option value=true>True</option>
+                                <option value=false>False</option>
+                            </select>            
+                        </div>
                     </div>
-                </div>
-            </div> 
+                </div> 
 
-            <div class="card-footer">
-                <button (click)="update()" *ngIf="currentTask.completed"  type="submit" class="btn btn-success col-sm-12">Update</button>                    
-                <button (click)="update()" *ngIf="!currentTask.completed" type="submit" class="btn btn-danger col-sm-12">Update</button>
-            </div>            
-        </div>
+                <div class="card-footer">
+                    <input (click)="update()" *ngIf="currentTask.completed" value="Update" type="submit" class="btn btn-success col-sm-12" />
+                    <input (click)="update()" *ngIf="!currentTask.completed" value="Update" type="submit" class="btn btn-danger col-sm-12" />
+                </div>       
+            </div>
+        </form>     
     </div>
 </div>
